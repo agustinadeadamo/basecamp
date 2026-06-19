@@ -24,7 +24,7 @@ export function Explorer({ colivings }: { colivings: Coliving[] }) {
     <div className="flex flex-col gap-8">
       <ProfileControl value={profile} onChange={setProfile} />
 
-      <section aria-label="Coliving results" className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <section aria-label="Coliving results" className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {ranked.map(({ coliving, fit }) => (
           <ColivingCard key={coliving.id} coliving={coliving} fit={fit} />
         ))}
