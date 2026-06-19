@@ -5,6 +5,7 @@ import { greatForNotFor, type FitFactor, type FitResult } from "@/lib/fit";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Reveal } from "./reveal";
 
 // Soft top wash keyed to community type — cool for focus, warm for social,
 // neutral for balanced. Doubles as an at-a-glance signal of the type.
@@ -150,7 +151,18 @@ function ReviewSpread({ reviews }: { reviews: Review[] }) {
   );
 }
 
-export function ColivingCard({ coliving, fit }: { coliving: Coliving; fit: FitResult }) {
+export function ColivingCard({
+  coliving,
+  fit,
+  revealKey = 0,
+  index = 0,
+}: {
+  coliving: Coliving;
+  fit: FitResult;
+  /** Changing this re-triggers the score/reasoning reveal (e.g. on profile change). */
+  revealKey?: number;
+  index?: number;
+}) {
   return (
     <Card className="relative flex flex-col">
       <div
@@ -169,7 +181,9 @@ export function ColivingCard({ coliving, fit }: { coliving: Coliving; fit: FitRe
             <p className="text-sm text-muted-foreground">{coliving.city}</p>
             <ConfidenceMarker confidence={coliving.dataConfidence} />
           </div>
-          <FitBadge score={fit.score} />
+          <Reveal key={`badge-${revealKey}`} index={index}>
+            <FitBadge score={fit.score} />
+          </Reveal>
         </div>
       </CardHeader>
 
@@ -209,20 +223,22 @@ export function ColivingCard({ coliving, fit }: { coliving: Coliving; fit: FitRe
           ))}
         </div>
 
-        <div className="mt-auto flex flex-col gap-4 border-t pt-4">
-          <div>
-            <p className="mb-2 text-xs font-medium tracking-wide text-muted-foreground uppercase">
-              Why this fit
-            </p>
-            <div className="flex flex-wrap gap-1.5">
-              {fit.factors.map((factor) => (
-                <FactorChip key={factor.label} factor={factor} />
-              ))}
+        <Reveal key={`reasoning-${revealKey}`} index={index} className="mt-auto">
+          <div className="flex flex-col gap-4 border-t pt-4">
+            <div>
+              <p className="mb-2 text-xs font-medium tracking-wide text-muted-foreground uppercase">
+                Why this fit
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {fit.factors.map((factor) => (
+                  <FactorChip key={factor.label} factor={factor} />
+                ))}
+              </div>
             </div>
-          </div>
 
-          <ReviewSpread reviews={coliving.reviews} />
-        </div>
+            <ReviewSpread reviews={coliving.reviews} />
+          </div>
+        </Reveal>
       </CardContent>
     </Card>
   );

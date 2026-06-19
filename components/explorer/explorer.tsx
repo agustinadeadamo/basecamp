@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import type { Coliving } from "@/lib/types";
 import { DEFAULT_PROFILE, type UserProfile } from "@/lib/profile";
@@ -27,6 +27,19 @@ export function Explorer({ colivings }: { colivings: Coliving[] }) {
 
   const hasStrongMatch = ranked.some(({ fit }) => fit.score >= STRONG_MATCH_THRESHOLD);
 
+  // Re-trigger the score/reasoning reveal once the profile settles (debounced so
+  // dragging the budget slider doesn't fire a flurry of animations).
+  const [revealKey, setRevealKey] = useState(0);
+  const isFirstRender = useRef(true);
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    const t = setTimeout(() => setRevealKey((k) => k + 1), 120);
+    return () => clearTimeout(t);
+  }, [profile]);
+
   return (
     <div className="flex flex-col gap-8">
       <section aria-label="Your preferences">
@@ -39,8 +52,14 @@ export function Explorer({ colivings }: { colivings: Coliving[] }) {
             Coliving matches
           </h2>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            {ranked.map(({ coliving, fit }) => (
-              <ColivingCard key={coliving.id} coliving={coliving} fit={fit} />
+            {ranked.map(({ coliving, fit }, index) => (
+              <ColivingCard
+                key={coliving.id}
+                coliving={coliving}
+                fit={fit}
+                revealKey={revealKey}
+                index={index}
+              />
             ))}
           </div>
         </section>
