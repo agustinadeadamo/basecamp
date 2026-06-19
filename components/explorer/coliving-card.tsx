@@ -6,6 +6,14 @@ import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
+// Soft top wash keyed to community type — cool for focus, warm for social,
+// neutral for balanced. Doubles as an at-a-glance signal of the type.
+const BAND_BY_TYPE: Record<Coliving["communityType"], string> = {
+  focus: "from-band-focus",
+  social: "from-band-social",
+  balanced: "from-band-balanced",
+};
+
 function formatPrice(amount: number, currency: string): string {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -128,7 +136,14 @@ function ReviewSpread({ reviews }: { reviews: Review[] }) {
 
 export function ColivingCard({ coliving, fit }: { coliving: Coliving; fit: FitResult }) {
   return (
-    <Card className="flex flex-col">
+    <Card className="relative flex flex-col">
+      <div
+        aria-hidden
+        className={cn(
+          "pointer-events-none absolute inset-x-0 top-0 -z-10 h-24 bg-gradient-to-b to-transparent",
+          BAND_BY_TYPE[coliving.communityType],
+        )}
+      />
       <CardHeader>
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1.5">

@@ -98,6 +98,15 @@
   --ring-offset:  2px;
 
   /* ========================================================================
+     Surface bands — a restrained tint per community type. Cool for focus,
+     warm for social, neutral for balanced. Used as a soft card header wash
+     that warms the surface and encodes the type at a glance. (LIGHT)
+     ======================================================================== */
+  --band-focus:    oklch(0.925 0.035 235);
+  --band-social:   oklch(0.925 0.050 55);
+  --band-balanced: oklch(0.930 0.014 80);
+
+  /* ========================================================================
      Semantic colors — LIGHT theme. shadcn/ui reads these names.
      ======================================================================== */
   --background:           var(--stone-50);
@@ -175,6 +184,11 @@
   --input:                oklch(1 0 0 / 0.15);
 
   --ring:                 var(--sage-400);
+
+  /* Surface bands (DARK) — deeper, still restrained. */
+  --band-focus:    oklch(0.325 0.040 240);
+  --band-social:   oklch(0.340 0.050 50);
+  --band-balanced: oklch(0.300 0.012 80);
 
   --chart-1: var(--sage-400);
   --chart-2: var(--sage-200);

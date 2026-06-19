@@ -86,6 +86,9 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-band-focus: var(--band-focus);
+  --color-band-social: var(--band-social);
+  --color-band-balanced: var(--band-balanced);
 }
 
 @layer base {
