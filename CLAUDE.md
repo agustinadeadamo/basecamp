@@ -57,6 +57,9 @@ Use [Conventional Commits](https://www.conventionalcommits.org/):
 `fix(tokens): correct dark border contrast`, `chore: scaffold project`. Common
 types: `feat`, `fix`, `chore`, `refactor`, `style`, `docs`, `test`.
 
+**No AI attribution.** Never add a `Co-Authored-By` trailer or any
+"Generated with Claude Code" / Claude attribution to commit messages.
+
 ## Scripts
 
 - `pnpm dev` — dev server
