@@ -1,7 +1,7 @@
 import { CalendarDays, Info, Minus, Plus, ShieldCheck, Users, Video, Wifi } from "lucide-react";
 
-import type { Coliving, DataConfidence } from "@/lib/types";
-import type { FitFactor, FitResult } from "@/lib/fit";
+import type { Coliving, DataConfidence, Review } from "@/lib/types";
+import { greatForNotFor, type FitFactor, type FitResult } from "@/lib/fit";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -78,6 +78,54 @@ function ConfidenceMarker({ confidence }: { confidence: DataConfidence }) {
   );
 }
 
+/** Scannable verdict — who the place suits and who it doesn't. */
+function Verdict({ coliving }: { coliving: Coliving }) {
+  const { great, not } = greatForNotFor(coliving);
+  return (
+    <p className="text-sm leading-relaxed text-muted-foreground">
+      <span className="font-medium text-foreground">Great for</span> {great}
+      <span className="px-1.5 text-muted-foreground/60">·</span>
+      <span className="font-medium text-foreground">Not for</span> {not}
+    </p>
+  );
+}
+
+/** The spread — a focus-leaning review next to a social-leaning one. */
+function ReviewSpread({ reviews }: { reviews: Review[] }) {
+  const shown = [
+    reviews.find((r) => r.axis === "focus"),
+    reviews.find((r) => r.axis === "social"),
+  ].filter((r): r is Review => Boolean(r));
+  if (shown.length === 0) return null;
+  return (
+    <div>
+      <p className="mb-2 text-xs font-medium tracking-wide text-muted-foreground uppercase">
+        The spread
+      </p>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {shown.map((r) => (
+          <figure key={r.quote} className="rounded-md bg-muted/40 p-3">
+            <span
+              className={cn(
+                "text-[0.625rem] font-semibold tracking-wide uppercase",
+                r.axis === "focus" ? "text-primary" : "text-muted-foreground",
+              )}
+            >
+              {r.axis === "focus" ? "Focus" : "Social"}
+            </span>
+            <blockquote className="mt-1.5 text-sm leading-snug text-foreground">
+              &ldquo;{r.quote}&rdquo;
+            </blockquote>
+            <figcaption className="mt-2 text-xs text-muted-foreground">
+              {r.author} · {r.source}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function ColivingCard({ coliving, fit }: { coliving: Coliving; fit: FitResult }) {
   return (
     <Card className="flex flex-col">
@@ -109,6 +157,8 @@ export function ColivingCard({ coliving, fit }: { coliving: Coliving; fit: FitRe
           </Stat>
         </ul>
 
+        <Verdict coliving={coliving} />
+
         <div className="flex flex-wrap gap-1.5">
           {coliving.vibeTags.slice(0, 4).map((tag) => (
             <Badge key={tag} variant="secondary" className="font-normal">
@@ -117,15 +167,19 @@ export function ColivingCard({ coliving, fit }: { coliving: Coliving; fit: FitRe
           ))}
         </div>
 
-        <div className="mt-auto border-t pt-4">
-          <p className="mb-2 text-xs font-medium tracking-wide text-muted-foreground uppercase">
-            Why this fit
-          </p>
-          <div className="flex flex-wrap gap-1.5">
-            {fit.factors.map((factor) => (
-              <FactorChip key={factor.label} factor={factor} />
-            ))}
+        <div className="mt-auto flex flex-col gap-4 border-t pt-4">
+          <div>
+            <p className="mb-2 text-xs font-medium tracking-wide text-muted-foreground uppercase">
+              Why this fit
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {fit.factors.map((factor) => (
+                <FactorChip key={factor.label} factor={factor} />
+              ))}
+            </div>
           </div>
+
+          <ReviewSpread reviews={coliving.reviews} />
         </div>
       </CardContent>
     </Card>
