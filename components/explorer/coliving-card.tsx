@@ -4,7 +4,7 @@ import type { Coliving, DataConfidence, Review } from "@/lib/types";
 import { greatForNotFor, type FitFactor, type FitResult } from "@/lib/fit";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 // Soft top wash keyed to community type — cool for focus, warm for social,
 // neutral for balanced. Doubles as an at-a-glance signal of the type.
@@ -31,7 +31,11 @@ function FitBadge({ score }: { score: number }) {
         ? "bg-primary/10 text-primary"
         : "bg-muted text-muted-foreground";
   return (
-    <div className={cn("flex flex-col items-center rounded-lg px-3 py-1.5 leading-none", tier)}>
+    <div
+      role="img"
+      aria-label={`Fit score ${score} out of 100`}
+      className={cn("flex flex-col items-center rounded-lg px-3 py-1.5 leading-none", tier)}
+    >
       <span className="text-xl font-semibold tabular-nums">{score}</span>
       <span className="mt-0.5 text-[0.625rem] font-medium tracking-wide uppercase">fit</span>
     </div>
@@ -47,17 +51,28 @@ function FactorChip({ factor }: { factor: FitFactor }) {
         positive ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground",
       )}
     >
-      {positive ? <Plus className="size-3" /> : <Minus className="size-3" />}
+      {positive ? <Plus className="size-3" aria-hidden /> : <Minus className="size-3" aria-hidden />}
+      <span className="sr-only">{positive ? "Pro: " : "Con: "}</span>
       {factor.label}
     </span>
   );
 }
 
-function Stat({ icon: Icon, children }: { icon: typeof Wifi; children: React.ReactNode }) {
+function Stat({
+  icon: Icon,
+  label,
+  children,
+}: {
+  icon: typeof Wifi;
+  /** Full accessible description, e.g. "Wi-Fi speed 320 megabits per second". */
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <li className="flex items-center gap-1.5 text-sm text-muted-foreground">
       <Icon className="size-4 shrink-0" aria-hidden />
-      {children}
+      <span aria-hidden="true">{children}</span>
+      <span className="sr-only">{label}</span>
     </li>
   );
 }
@@ -80,6 +95,7 @@ function ConfidenceMarker({ confidence }: { confidence: DataConfidence }) {
       )}
     >
       <Icon className="size-3.5 shrink-0" aria-hidden />
+      <span className="sr-only">Data confidence: </span>
       {thin ? "Limited data" : "Verified"}
       <span className="text-muted-foreground">· {reports}</span>
     </span>
@@ -147,7 +163,9 @@ export function ColivingCard({ coliving, fit }: { coliving: Coliving; fit: FitRe
       <CardHeader>
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1.5">
-            <CardTitle className="font-display text-xl tracking-tight">{coliving.name}</CardTitle>
+            <h3 className="font-display text-xl font-semibold leading-snug tracking-tight">
+              {coliving.name}
+            </h3>
             <p className="text-sm text-muted-foreground">{coliving.city}</p>
             <ConfidenceMarker confidence={coliving.dataConfidence} />
           </div>
@@ -164,10 +182,19 @@ export function ColivingCard({ coliving, fit }: { coliving: Coliving; fit: FitRe
         </div>
 
         <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
-          <Stat icon={Wifi}>{coliving.wifiMbps} Mbps</Stat>
-          <Stat icon={CalendarDays}>{coliving.minStayDays}-night min</Stat>
-          <Stat icon={Video}>{coliving.callsFriendly ? "Calls ready" : "Calls limited"}</Stat>
-          <Stat icon={Users}>
+          <Stat icon={Wifi} label={`Wi-Fi speed ${coliving.wifiMbps} megabits per second`}>
+            {coliving.wifiMbps} Mbps
+          </Stat>
+          <Stat icon={CalendarDays} label={`Minimum stay ${coliving.minStayDays} nights`}>
+            {coliving.minStayDays}-night min
+          </Stat>
+          <Stat
+            icon={Video}
+            label={`Video calls ${coliving.callsFriendly ? "ready" : "limited"}`}
+          >
+            {coliving.callsFriendly ? "Calls ready" : "Calls limited"}
+          </Stat>
+          <Stat icon={Users} label={`Community type: ${coliving.communityType}`}>
             <span className="capitalize">{coliving.communityType}</span>
           </Stat>
         </ul>

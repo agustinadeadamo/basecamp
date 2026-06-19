@@ -29,13 +29,20 @@ export function Explorer({ colivings }: { colivings: Coliving[] }) {
 
   return (
     <div className="flex flex-col gap-8">
-      <ProfileControl value={profile} onChange={setProfile} />
+      <section aria-label="Your preferences">
+        <ProfileControl value={profile} onChange={setProfile} />
+      </section>
 
       {hasStrongMatch ? (
-        <section aria-label="Coliving results" className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {ranked.map(({ coliving, fit }) => (
-            <ColivingCard key={coliving.id} coliving={coliving} fit={fit} />
-          ))}
+        <section aria-labelledby="results-heading" className="flex flex-col gap-6">
+          <h2 id="results-heading" className="sr-only">
+            Coliving matches
+          </h2>
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {ranked.map(({ coliving, fit }) => (
+              <ColivingCard key={coliving.id} coliving={coliving} fit={fit} />
+            ))}
+          </div>
         </section>
       ) : (
         <EmptyState />

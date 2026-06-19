@@ -14,7 +14,7 @@ export function EmptyState() {
       >
         <Telescope className="size-6" />
       </div>
-      <h3 className="font-display text-xl text-foreground">No strong matches yet</h3>
+      <h2 className="font-display text-xl text-foreground">No strong matches yet</h2>
       <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
         Nothing fits this profile well right now. Try widening your budget, or easing the
         atmosphere or stay length — the results will update as you go.

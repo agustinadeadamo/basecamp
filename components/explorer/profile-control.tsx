@@ -78,6 +78,7 @@ export function ProfileControl({
         <ToggleGroup
           type="single"
           variant="outline"
+          aria-label="Atmosphere preference"
           value={value.communityPreference}
           onValueChange={(v) => v && set("communityPreference", v as CommunityPreference)}
           className="w-full"
@@ -94,6 +95,7 @@ export function ProfileControl({
         <ToggleGroup
           type="single"
           variant="outline"
+          aria-label="Stay length"
           value={String(value.stayLengthDays)}
           onValueChange={(v) => v && set("stayLengthDays", Number(v))}
           className="w-full"
