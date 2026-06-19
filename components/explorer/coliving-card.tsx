@@ -1,6 +1,6 @@
-import { CalendarDays, Minus, Plus, Users, Video, Wifi } from "lucide-react";
+import { CalendarDays, Info, Minus, Plus, ShieldCheck, Users, Video, Wifi } from "lucide-react";
 
-import type { Coliving } from "@/lib/types";
+import type { Coliving, DataConfidence } from "@/lib/types";
 import type { FitFactor, FitResult } from "@/lib/fit";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
@@ -25,9 +25,7 @@ function FitBadge({ score }: { score: number }) {
   return (
     <div className={cn("flex flex-col items-center rounded-lg px-3 py-1.5 leading-none", tier)}>
       <span className="text-xl font-semibold tabular-nums">{score}</span>
-      <span className="mt-0.5 text-[0.625rem] font-medium tracking-wide uppercase opacity-80">
-        fit
-      </span>
+      <span className="mt-0.5 text-[0.625rem] font-medium tracking-wide uppercase">fit</span>
     </div>
   );
 }
@@ -56,14 +54,39 @@ function Stat({ icon: Icon, children }: { icon: typeof Wifi; children: React.Rea
   );
 }
 
+/**
+ * Honest-uncertainty marker. Thin records are shown as a first-class, clearly
+ * marked state — never dressed up to look as confident as verified ones.
+ */
+function ConfidenceMarker({ confidence }: { confidence: DataConfidence }) {
+  const thin = confidence.level === "thin";
+  const Icon = thin ? Info : ShieldCheck;
+  const reports = `${confidence.reportsCount} report${confidence.reportsCount === 1 ? "" : "s"}`;
+  return (
+    <span
+      className={cn(
+        "inline-flex w-fit items-center gap-1 text-xs",
+        thin
+          ? "rounded-md border bg-muted/50 px-2 py-0.5 text-foreground"
+          : "text-muted-foreground",
+      )}
+    >
+      <Icon className="size-3.5 shrink-0" aria-hidden />
+      {thin ? "Limited data" : "Verified"}
+      <span className="text-muted-foreground">· {reports}</span>
+    </span>
+  );
+}
+
 export function ColivingCard({ coliving, fit }: { coliving: Coliving; fit: FitResult }) {
   return (
     <Card className="flex flex-col">
       <CardHeader>
         <div className="flex items-start justify-between gap-4">
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             <CardTitle className="font-display text-xl tracking-tight">{coliving.name}</CardTitle>
             <p className="text-sm text-muted-foreground">{coliving.city}</p>
+            <ConfidenceMarker confidence={coliving.dataConfidence} />
           </div>
           <FitBadge score={fit.score} />
         </div>
