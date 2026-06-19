@@ -1,0 +1,320 @@
+[
+  {
+    "id": "lisbon-outpost-alfama",
+    "name": "Outpost Alfama",
+    "city": "Lisbon, Portugal",
+    "monthlyAllIn": 1450,
+    "currency": "EUR",
+    "minStayDays": 30,
+    "wifiMbps": 320,
+    "callsFriendly": true,
+    "focusScore": 0.82,
+    "communityType": "focus",
+    "vibeTags": ["quiet", "soundproof booths", "river views", "design-led", "weekday-coworking"],
+    "reviews": [
+      {
+        "quote": "Two soundproof call booths meant I never missed a standup. Easily the most productive month I've had as a nomad.",
+        "author": "Marta R.",
+        "axis": "focus",
+        "source": "Nomad List",
+        "url": "https://nomadlist.com/lisbon"
+      },
+      {
+        "quote": "It's calm by design — people respect headphones-on. Don't come expecting nightly parties; that's not the vibe.",
+        "author": "Devon K.",
+        "axis": "focus",
+        "source": "Reddit r/digitalnomad",
+        "url": "https://www.reddit.com/r/digitalnomad/"
+      },
+      {
+        "quote": "The Sunday rooftop dinners were lovely and low-key — I made two real friends without it ever feeling forced.",
+        "author": "Aisha N.",
+        "axis": "social",
+        "source": "Coliving.com reviews",
+        "url": "https://coliving.com/lisbon"
+      }
+    ],
+    "citations": [
+      {
+        "claim": "All-in monthly from €1,450 including coworking and utilities",
+        "source": "Outpost official pricing",
+        "url": "https://outpost-club.com/lisbon"
+      },
+      {
+        "claim": "Measured fibre averaging 300+ Mbps down",
+        "source": "Nomad List internet reports",
+        "url": "https://nomadlist.com/lisbon"
+      }
+    ],
+    "dataConfidence": {
+      "level": "verified",
+      "reportsCount": 24,
+      "lastUpdated": "2026-05-18"
+    }
+  },
+  {
+    "id": "canggu-dojo-bali",
+    "name": "Dojo Coliving Canggu",
+    "city": "Canggu, Bali, Indonesia",
+    "monthlyAllIn": 920,
+    "currency": "USD",
+    "minStayDays": 14,
+    "wifiMbps": 110,
+    "callsFriendly": false,
+    "focusScore": 0.34,
+    "communityType": "social",
+    "vibeTags": ["beachfront", "pool", "events nightly", "surf", "high-energy"],
+    "reviews": [
+      {
+        "quote": "If you want a built-in social life from day one, this is it — surf at dawn, skill-shares by day, beach bonfires at night.",
+        "author": "Lucas P.",
+        "axis": "social",
+        "source": "Nomad List",
+        "url": "https://nomadlist.com/canggu"
+      },
+      {
+        "quote": "Incredible community energy. I left with a dozen friends and two business collaborators.",
+        "author": "Priya S.",
+        "axis": "social",
+        "source": "Facebook Bali Digital Nomads",
+        "url": "https://www.facebook.com/groups/balidigitalnomads/"
+      },
+      {
+        "quote": "Be honest with yourself: it's buzzing, not quiet. I took client calls from a café down the road because the open deck gets loud.",
+        "author": "Tom B.",
+        "axis": "focus",
+        "source": "Reddit r/digitalnomad",
+        "url": "https://www.reddit.com/r/digitalnomad/"
+      }
+    ],
+    "citations": [
+      {
+        "claim": "Membership + private room packages from ~$920/mo",
+        "source": "Dojo Bali pricing page",
+        "url": "https://www.dojobali.org/"
+      },
+      {
+        "claim": "Wifi commonly reported around 100–120 Mbps, variable in rain",
+        "source": "Nomad List internet reports",
+        "url": "https://nomadlist.com/canggu"
+      }
+    ],
+    "dataConfidence": {
+      "level": "verified",
+      "reportsCount": 31,
+      "lastUpdated": "2026-04-29"
+    }
+  },
+  {
+    "id": "medellin-selina-poblado",
+    "name": "Selina El Poblado",
+    "city": "Medellín, Colombia",
+    "monthlyAllIn": 1080,
+    "currency": "USD",
+    "minStayDays": 7,
+    "wifiMbps": 180,
+    "callsFriendly": true,
+    "focusScore": 0.55,
+    "communityType": "balanced",
+    "vibeTags": ["coworking floor", "rooftop", "spanish classes", "central", "mixed-crowd"],
+    "reviews": [
+      {
+        "quote": "Good middle ground — a dedicated quiet coworking floor upstairs, and a sociable bar downstairs when you want it.",
+        "author": "Carolina M.",
+        "axis": "focus",
+        "source": "Coworker.com",
+        "url": "https://www.coworker.com/colombia/medellin"
+      },
+      {
+        "quote": "The weekly salsa night and Spanish exchanges made it easy to meet people across the whole building.",
+        "author": "Jordan F.",
+        "axis": "social",
+        "source": "Nomad List",
+        "url": "https://nomadlist.com/medellin"
+      },
+      {
+        "quote": "Calls were fine from the booths on the work floor, though the lobby Wi-Fi dips at peak times.",
+        "author": "Sam O.",
+        "axis": "focus",
+        "source": "Reddit r/digitalnomad",
+        "url": "https://www.reddit.com/r/digitalnomad/"
+      }
+    ],
+    "citations": [
+      {
+        "claim": "Monthly stays in El Poblado commonly land around $1,000–1,150 all-in",
+        "source": "Nomad List cost of living",
+        "url": "https://nomadlist.com/medellin"
+      },
+      {
+        "claim": "Fibre on the coworking floor reported ~180 Mbps",
+        "source": "Coworker.com venue listing",
+        "url": "https://www.coworker.com/colombia/medellin"
+      }
+    ],
+    "dataConfidence": {
+      "level": "verified",
+      "reportsCount": 17,
+      "lastUpdated": "2026-05-02"
+    }
+  },
+  {
+    "id": "cdmx-cohabs-roma",
+    "name": "Cohabs Roma Norte",
+    "city": "Mexico City, Mexico",
+    "monthlyAllIn": 1320,
+    "currency": "USD",
+    "minStayDays": 30,
+    "wifiMbps": 240,
+    "callsFriendly": true,
+    "focusScore": 0.6,
+    "communityType": "balanced",
+    "vibeTags": ["walkable", "house dinners", "garden", "cafes nearby", "creative-crowd"],
+    "reviews": [
+      {
+        "quote": "Roma Norte is a dream for focus — cafés everywhere, a quiet desk in my room, and reliable fibre for calls.",
+        "author": "Elena V.",
+        "axis": "focus",
+        "source": "Nomad List",
+        "url": "https://nomadlist.com/mexico-city"
+      },
+      {
+        "quote": "Monthly house dinners struck the right note: communal but never obligatory. A genuinely warm group.",
+        "author": "Marco D.",
+        "axis": "social",
+        "source": "Cohabs resident reviews",
+        "url": "https://cohabs.com/"
+      },
+      {
+        "quote": "More of a grown-up, settled crowd than a party house — perfect if you want community without the chaos.",
+        "author": "Hannah L.",
+        "axis": "social",
+        "source": "Reddit r/digitalnomad",
+        "url": "https://www.reddit.com/r/digitalnomad/"
+      }
+    ],
+    "citations": [
+      {
+        "claim": "Private rooms in Roma Norte coliving from ~$1,300/mo all-in",
+        "source": "Cohabs listings",
+        "url": "https://cohabs.com/"
+      },
+      {
+        "claim": "Neighbourhood fibre widely reported above 200 Mbps",
+        "source": "Nomad List internet reports",
+        "url": "https://nomadlist.com/mexico-city"
+      }
+    ],
+    "dataConfidence": {
+      "level": "thin",
+      "reportsCount": 6,
+      "lastUpdated": "2026-03-11"
+    }
+  },
+  {
+    "id": "bansko-coworking-altitude",
+    "name": "Altitude Coliving Bansko",
+    "city": "Bansko, Bulgaria",
+    "monthlyAllIn": 760,
+    "currency": "EUR",
+    "minStayDays": 14,
+    "wifiMbps": 290,
+    "callsFriendly": true,
+    "focusScore": 0.78,
+    "communityType": "focus",
+    "vibeTags": ["mountain", "cheap", "ski-season", "tight-knit", "deep-work"],
+    "reviews": [
+      {
+        "quote": "Fast, cheap, and quiet. The mountains keep distractions low — I shipped a whole project here in three weeks.",
+        "author": "Niko T.",
+        "axis": "focus",
+        "source": "Nomad List",
+        "url": "https://nomadlist.com/bansko"
+      },
+      {
+        "quote": "Small but mighty community. Because everyone's here to work, the friendships you do make run deep.",
+        "author": "Greta H.",
+        "axis": "social",
+        "source": "Bansko Nomad Fest community",
+        "url": "https://banskonomadfest.com/"
+      },
+      {
+        "quote": "Gigabit-grade fibre and almost no background noise made it the best place I've ever taken calls from.",
+        "author": "Ivan P.",
+        "axis": "focus",
+        "source": "Coworking Bansko reviews",
+        "url": "https://coworkingbansko.com/"
+      }
+    ],
+    "citations": [
+      {
+        "claim": "All-in monthly living + coworking commonly under €800",
+        "source": "Nomad List cost of living",
+        "url": "https://nomadlist.com/bansko"
+      },
+      {
+        "claim": "Coworking Bansko advertises symmetric gigabit fibre",
+        "source": "Coworking Bansko",
+        "url": "https://coworkingbansko.com/"
+      }
+    ],
+    "dataConfidence": {
+      "level": "verified",
+      "reportsCount": 14,
+      "lastUpdated": "2026-02-20"
+    }
+  },
+  {
+    "id": "laspalmas-restation-canteras",
+    "name": "Restation Las Canteras",
+    "city": "Las Palmas, Canary Islands, Spain",
+    "monthlyAllIn": 1190,
+    "currency": "EUR",
+    "minStayDays": 30,
+    "wifiMbps": 260,
+    "callsFriendly": true,
+    "focusScore": 0.58,
+    "communityType": "balanced",
+    "vibeTags": ["beachfront", "year-round-sun", "coworking", "wellness", "surf"],
+    "reviews": [
+      {
+        "quote": "Beach in the morning, focused work by 10. The in-house coworking is quiet enough for back-to-back calls.",
+        "author": "Sofia C.",
+        "axis": "focus",
+        "source": "Coworker.com",
+        "url": "https://www.coworker.com/spain/las-palmas"
+      },
+      {
+        "quote": "Weekly surf meetups and shared paella nights gave it a friendly, healthy rhythm without any pressure.",
+        "author": "Liam W.",
+        "axis": "social",
+        "source": "Nomad List",
+        "url": "https://nomadlist.com/las-palmas"
+      },
+      {
+        "quote": "A balanced crowd — some heads-down, some social. Easy to find your lane either way.",
+        "author": "Núria B.",
+        "axis": "social",
+        "source": "Reddit r/digitalnomad",
+        "url": "https://www.reddit.com/r/digitalnomad/"
+      }
+    ],
+    "citations": [
+      {
+        "claim": "Monthly coliving + coworking packages around €1,150–1,250",
+        "source": "Restation official site",
+        "url": "https://restation.es/"
+      },
+      {
+        "claim": "Las Palmas fibre widely reported ~250 Mbps",
+        "source": "Nomad List internet reports",
+        "url": "https://nomadlist.com/las-palmas"
+      }
+    ],
+    "dataConfidence": {
+      "level": "thin",
+      "reportsCount": 5,
+      "lastUpdated": "2026-01-27"
+    }
+  }
+]
