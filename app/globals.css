@@ -35,6 +35,7 @@
   --tracking-tight:  var(--tracking-tight);
   --tracking-normal: var(--tracking-normal);
   --tracking-wide:   var(--tracking-wide);
+  --tracking-wider:  var(--tracking-wider);
 
   --font-weight-normal:   var(--weight-normal);
   --font-weight-medium:   var(--weight-medium);
@@ -86,15 +87,9 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --color-band-focus: var(--band-focus);
-  --color-band-social: var(--band-social);
-  --color-band-balanced: var(--band-balanced);
-  --color-band-focus-foreground: var(--band-focus-foreground);
-  --color-band-social-foreground: var(--band-social-foreground);
-  --color-band-balanced-foreground: var(--band-balanced-foreground);
-  --color-band-focus-accent: var(--band-focus-accent);
-  --color-band-social-accent: var(--band-social-accent);
-  --color-band-balanced-accent: var(--band-balanced-accent);
+  --color-surface-focus: var(--surface-focus);
+  --color-surface-social: var(--surface-social);
+  --color-surface-balanced: var(--surface-balanced);
 }
 
 @layer base {

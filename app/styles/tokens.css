@@ -59,6 +59,7 @@
   --tracking-tight:  -0.02em;
   --tracking-normal: 0em;
   --tracking-wide:   0.02em;
+  --tracking-wider:  0.12em;  /* editorial eyebrows / small-caps labels */
 
   --weight-normal:   400;
   --weight-medium:   500;
@@ -98,26 +99,15 @@
   --ring-offset:  2px;
 
   /* ========================================================================
-     Surface bands — a colored card header keyed to community type, with a
-     matching foreground (city name) and a saturated accent (left border).
-     Cool sage/teal for focus, warm amber/terracotta for social, soft
-     neutral-gold for balanced. Soft but unmistakably present against the
-     near-white card; restrained, never neon. (LIGHT)
-
-     Contrast budget (WCAG 2.1 AA): *-foreground reads on its band at >=4.5:1
-     (small text); *-accent reads on the card surface at >=3:1 (non-text UI).
+     Community-type surface tint — a whisper-level temperature shift within
+     the stone family, NOT a new hue. Focus reads a touch cooler, social a
+     touch warmer, balanced is neutral stone. Lightness tracks the card
+     surface so text contrast is unchanged (AA preserved); only the hue is
+     nudged a single step. (LIGHT)
      ======================================================================== */
-  --band-focus:    oklch(0.890 0.082 185);
-  --band-social:   oklch(0.885 0.095 52);
-  --band-balanced: oklch(0.900 0.060 90);
-
-  --band-focus-foreground:    oklch(0.370 0.058 185);
-  --band-social-foreground:   oklch(0.385 0.078 50);
-  --band-balanced-foreground: oklch(0.388 0.052 88);
-
-  --band-focus-accent:    oklch(0.585 0.100 185);
-  --band-social-accent:   oklch(0.615 0.130 50);
-  --band-balanced-accent: oklch(0.620 0.108 90);
+  --surface-focus:    oklch(0.985 0.006 110);
+  --surface-balanced: oklch(0.986 0.004 75);
+  --surface-social:   oklch(0.985 0.008 48);
 
   /* ========================================================================
      Semantic colors — LIGHT theme. shadcn/ui reads these names.
@@ -198,18 +188,11 @@
 
   --ring:                 var(--sage-400);
 
-  /* Surface bands (DARK) — deeper, still keyed and clearly present. */
-  --band-focus:    oklch(0.345 0.050 185);
-  --band-social:   oklch(0.355 0.060 50);
-  --band-balanced: oklch(0.350 0.038 88);
-
-  --band-focus-foreground:    oklch(0.890 0.045 185);
-  --band-social-foreground:   oklch(0.895 0.055 55);
-  --band-balanced-foreground: oklch(0.900 0.040 90);
-
-  --band-focus-accent:    oklch(0.620 0.080 185);
-  --band-social-accent:   oklch(0.650 0.100 50);
-  --band-balanced-accent: oklch(0.700 0.080 90);
+  /* Community-type surface tint (DARK) — same whisper-level temperature
+     shift within the stone family, tracking the dark card surface. */
+  --surface-focus:    oklch(0.212 0.010 110);
+  --surface-balanced: oklch(0.208 0.009 54);
+  --surface-social:   oklch(0.214 0.011 45);
 
   --chart-1: var(--sage-400);
   --chart-2: var(--sage-200);
