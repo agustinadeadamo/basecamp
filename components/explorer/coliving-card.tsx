@@ -1,4 +1,4 @@
-import { CalendarDays, Info, Minus, Plus, ShieldCheck, Users, Video, Wifi } from "lucide-react";
+import { CalendarDays, Info, MapPin, Minus, Plus, ShieldCheck, Users, Video, Wifi } from "lucide-react";
 
 import type { Coliving, DataConfidence, Review } from "@/lib/types";
 import { greatForNotFor, type FitFactor, type FitResult } from "@/lib/fit";
@@ -7,12 +7,31 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Reveal } from "./reveal";
 
-// Soft top wash keyed to community type — cool for focus, warm for social,
-// neutral for balanced. Doubles as an at-a-glance signal of the type.
-const BAND_BY_TYPE: Record<Coliving["communityType"], string> = {
-  focus: "from-band-focus",
-  social: "from-band-social",
-  balanced: "from-band-balanced",
+// A colored header band keyed to community type — cool sage/teal for focus,
+// warm amber/terracotta for social, soft neutral-gold for balanced. The band
+// carries the city name (so each card reads as a place), with a matching slim
+// left accent border tying the card to its type. Tokens carry the AA-checked
+// fill / foreground / accent triple; full class names are listed so Tailwind
+// keeps them at build time.
+const BAND_BY_TYPE: Record<
+  Coliving["communityType"],
+  { band: string; text: string; accent: string }
+> = {
+  focus: {
+    band: "bg-band-focus",
+    text: "text-band-focus-foreground",
+    accent: "border-l-band-focus-accent",
+  },
+  social: {
+    band: "bg-band-social",
+    text: "text-band-social-foreground",
+    accent: "border-l-band-social-accent",
+  },
+  balanced: {
+    band: "bg-band-balanced",
+    text: "text-band-balanced-foreground",
+    accent: "border-l-band-balanced-accent",
+  },
 };
 
 function formatPrice(amount: number, currency: string): string {
@@ -163,22 +182,32 @@ export function ColivingCard({
   revealKey?: number;
   index?: number;
 }) {
+  const band = BAND_BY_TYPE[coliving.communityType];
   return (
-    <Card className="relative flex flex-col">
+    <Card className={cn("flex flex-col border-l-4", band.accent)}>
+      {/* Colored, type-keyed header — names the place and signals the vibe. */}
       <div
-        aria-hidden
         className={cn(
-          "pointer-events-none absolute inset-x-0 top-0 -z-10 h-24 bg-gradient-to-b to-transparent",
-          BAND_BY_TYPE[coliving.communityType],
+          "-mt-(--card-spacing) flex h-24 items-end px-(--card-spacing) pb-3",
+          band.band,
         )}
-      />
+      >
+        <span
+          className={cn(
+            "inline-flex items-center gap-1.5 text-xs font-medium tracking-wide uppercase",
+            band.text,
+          )}
+        >
+          <MapPin className="size-3.5 shrink-0" aria-hidden />
+          {coliving.city}
+        </span>
+      </div>
       <CardHeader>
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1.5">
             <h3 className="font-display text-xl font-semibold leading-snug tracking-tight">
               {coliving.name}
             </h3>
-            <p className="text-sm text-muted-foreground">{coliving.city}</p>
             <ConfidenceMarker confidence={coliving.dataConfidence} />
           </div>
           <Reveal key={`badge-${revealKey}`} index={index}>

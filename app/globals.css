@@ -89,6 +89,12 @@
   --color-band-focus: var(--band-focus);
   --color-band-social: var(--band-social);
   --color-band-balanced: var(--band-balanced);
+  --color-band-focus-foreground: var(--band-focus-foreground);
+  --color-band-social-foreground: var(--band-social-foreground);
+  --color-band-balanced-foreground: var(--band-balanced-foreground);
+  --color-band-focus-accent: var(--band-focus-accent);
+  --color-band-social-accent: var(--band-social-accent);
+  --color-band-balanced-accent: var(--band-balanced-accent);
 }
 
 @layer base {

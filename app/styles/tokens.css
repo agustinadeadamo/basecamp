@@ -98,13 +98,26 @@
   --ring-offset:  2px;
 
   /* ========================================================================
-     Surface bands — a restrained tint per community type. Cool for focus,
-     warm for social, neutral for balanced. Used as a soft card header wash
-     that warms the surface and encodes the type at a glance. (LIGHT)
+     Surface bands — a colored card header keyed to community type, with a
+     matching foreground (city name) and a saturated accent (left border).
+     Cool sage/teal for focus, warm amber/terracotta for social, soft
+     neutral-gold for balanced. Soft but unmistakably present against the
+     near-white card; restrained, never neon. (LIGHT)
+
+     Contrast budget (WCAG 2.1 AA): *-foreground reads on its band at >=4.5:1
+     (small text); *-accent reads on the card surface at >=3:1 (non-text UI).
      ======================================================================== */
-  --band-focus:    oklch(0.925 0.035 235);
-  --band-social:   oklch(0.925 0.050 55);
-  --band-balanced: oklch(0.930 0.014 80);
+  --band-focus:    oklch(0.890 0.082 185);
+  --band-social:   oklch(0.885 0.095 52);
+  --band-balanced: oklch(0.900 0.060 90);
+
+  --band-focus-foreground:    oklch(0.370 0.058 185);
+  --band-social-foreground:   oklch(0.385 0.078 50);
+  --band-balanced-foreground: oklch(0.388 0.052 88);
+
+  --band-focus-accent:    oklch(0.585 0.100 185);
+  --band-social-accent:   oklch(0.615 0.130 50);
+  --band-balanced-accent: oklch(0.620 0.108 90);
 
   /* ========================================================================
      Semantic colors — LIGHT theme. shadcn/ui reads these names.
@@ -185,10 +198,18 @@
 
   --ring:                 var(--sage-400);
 
-  /* Surface bands (DARK) — deeper, still restrained. */
-  --band-focus:    oklch(0.325 0.040 240);
-  --band-social:   oklch(0.340 0.050 50);
-  --band-balanced: oklch(0.300 0.012 80);
+  /* Surface bands (DARK) — deeper, still keyed and clearly present. */
+  --band-focus:    oklch(0.345 0.050 185);
+  --band-social:   oklch(0.355 0.060 50);
+  --band-balanced: oklch(0.350 0.038 88);
+
+  --band-focus-foreground:    oklch(0.890 0.045 185);
+  --band-social-foreground:   oklch(0.895 0.055 55);
+  --band-balanced-foreground: oklch(0.900 0.040 90);
+
+  --band-focus-accent:    oklch(0.620 0.080 185);
+  --band-social-accent:   oklch(0.650 0.100 50);
+  --band-balanced-accent: oklch(0.700 0.080 90);
 
   --chart-1: var(--sage-400);
   --chart-2: var(--sage-200);
