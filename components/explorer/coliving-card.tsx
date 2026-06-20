@@ -57,20 +57,39 @@ function TypeMark({ type }: { type: CommunityType }) {
 }
 
 /**
+ * Score tier — gives a bare number meaning. A strong match should be
+ * unmistakable in a grid, a weak one honestly quiet, so each tier carries both
+ * a qualifier word and a tone: sage = Strong, ink = Good, muted = Fair/Weak.
+ */
+function scoreTier(score: number): { label: string; tone: string; emphasized: boolean } {
+  if (score >= 80) return { label: "Strong", tone: "text-primary", emphasized: true };
+  if (score >= 65) return { label: "Good", tone: "text-foreground", emphasized: false };
+  if (score >= 50) return { label: "Fair", tone: "text-muted-foreground", emphasized: false };
+  return { label: "Weak", tone: "text-muted-foreground", emphasized: false };
+}
+
+/**
  * Fit score — the soul of the product, treated as a considered figure rather
- * than a badge. Display face (shared with the place name), quiet caption, tone
- * stepped by tier so quality reads without a colored fill.
+ * than a badge. Display face (shared with the place name); the tier word and
+ * tone make quality legible at a glance, and strong matches lean heavier so
+ * they pop against quieter neighbors. No colored fill.
  */
 function FitScore({ score }: { score: number }) {
-  const tone = score >= 75 ? "text-primary" : score >= 50 ? "text-foreground" : "text-muted-foreground";
+  const { label, tone, emphasized } = scoreTier(score);
   return (
     <div
       role="img"
-      aria-label={`Fit score ${score} out of 100`}
+      aria-label={`Fit score ${score} out of 100 — ${label} match`}
       className="flex shrink-0 flex-col items-end leading-none"
     >
-      <span className="text-xs font-medium tracking-wider text-muted-foreground uppercase">Fit</span>
-      <span className={cn("mt-1.5 font-display text-3xl font-semibold tabular-nums", tone)}>
+      <span className={cn("text-xs font-semibold tracking-wider uppercase", tone)}>{label}</span>
+      <span
+        className={cn(
+          "mt-1.5 font-display text-3xl tabular-nums",
+          tone,
+          emphasized ? "font-bold" : "font-semibold",
+        )}
+      >
         {score}
       </span>
     </div>
@@ -189,16 +208,32 @@ export function ColivingCard({
   fit,
   revealKey = 0,
   index = 0,
+  featured = false,
 }: {
   coliving: Coliving;
   fit: FitResult;
   /** Changing this re-triggers the score/reasoning reveal (e.g. on profile change). */
   revealKey?: number;
   index?: number;
+  /** The single highest-ranked result — gets the lead treatment. */
+  featured?: boolean;
 }) {
   return (
-    <Card className={cn("flex flex-col [--card-spacing:--spacing(5)]", SURFACE_BY_TYPE[coliving.communityType])}>
+    <Card
+      className={cn(
+        "flex flex-col [--card-spacing:--spacing(5)]",
+        SURFACE_BY_TYPE[coliving.communityType],
+        // The lead: a quiet sage ring and a touch of elevation — not a billboard.
+        featured && "shadow-md ring-primary/50",
+      )}
+    >
       <CardHeader>
+        {featured && (
+          <p className="flex items-center gap-2 text-xs font-semibold tracking-wider text-primary uppercase">
+            <span aria-hidden className="h-px w-5 bg-primary" />
+            Best match for you
+          </p>
+        )}
         <div className="flex items-start justify-between gap-4">
           <div className="flex flex-col gap-1.5">
             <TypeMark type={coliving.communityType} />

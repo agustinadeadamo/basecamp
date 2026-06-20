@@ -59,6 +59,7 @@ export function Explorer({ colivings }: { colivings: Coliving[] }) {
                 fit={fit}
                 revealKey={revealKey}
                 index={index}
+                featured={index === 0}
               />
             ))}
           </div>
