@@ -113,3 +113,182 @@
     border-radius: var(--radius-sm);
   }
 }
+
+/* ==========================================================================
+   Long-form reading (/notes) — editorial typography for article prose.
+   Body set in Geist at a comfortable measure and airy leading; headings and
+   pull-quotes in Fraunces. Rules target semantic tags so the article body
+   stays clean, semantic HTML — same token vocabulary as the rest of the app.
+   ========================================================================== */
+.article {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--foreground);
+  text-wrap: pretty;
+  hanging-punctuation: first;
+}
+/* Vertical rhythm: space is owned by the gaps between blocks, not the blocks. */
+.article > * + * {
+  margin-block-start: 1.4em;
+}
+.article > :first-child {
+  margin-block-start: 0;
+}
+
+/* One editorial signature: a Fraunces drop cap opening the piece. Set on an
+   explicit span (not ::first-letter) so contractions like "I’m" don't pull the
+   apostrophe into the cap. */
+.article .dropcap {
+  float: left;
+  margin-block: 0.04em 0;
+  margin-inline-end: 0.09em;
+  font-family: var(--font-display);
+  font-size: 3.1em;
+  font-weight: var(--weight-semibold);
+  line-height: 0.78;
+  color: var(--foreground);
+}
+
+.article h2 {
+  margin-block: 2.2em 0.55em;
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+.article h3 {
+  margin-block: 1.8em 0.4em;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+.article strong {
+  font-weight: var(--weight-semibold);
+  color: var(--foreground);
+}
+.article em {
+  font-style: italic;
+}
+
+.article a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in oklab, var(--primary) 35%, transparent);
+  transition: text-decoration-color 150ms ease;
+}
+.article a:hover {
+  text-decoration-color: var(--primary);
+}
+
+.article ul,
+.article ol {
+  padding-inline-start: 1.4em;
+}
+.article ul {
+  list-style: disc;
+}
+.article ol {
+  list-style: decimal;
+}
+.article li + li {
+  margin-block-start: 0.5em;
+}
+.article li::marker {
+  color: var(--muted-foreground);
+}
+
+/* Pull-quote — a serif voice set off by a quiet sage rule. */
+.article blockquote {
+  border-inline-start: 2px solid var(--primary);
+  padding-inline-start: 1.25rem;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-style: italic;
+  line-height: var(--leading-snug);
+  color: var(--foreground);
+}
+.article blockquote > * + * {
+  margin-block-start: 0.5em;
+}
+
+/* Section break — a short, centered hairline rather than a full rule. */
+.article hr {
+  width: 3.5rem;
+  margin-block: 2.6em;
+  margin-inline: auto;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+.article :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-sm);
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+/* ==========================================================================
+   Print — make "Save as PDF" look intentional. Force the light palette onto
+   white paper regardless of the on-screen theme, hide screen-only chrome, and
+   keep headings attached to their text across page breaks.
+   ========================================================================== */
+@media print {
+  :root,
+  .dark {
+    --background: var(--stone-50);
+    --foreground: var(--stone-900);
+    --muted-foreground: var(--stone-600);
+    --primary: var(--sage-700);
+    --border: var(--stone-300);
+  }
+  html,
+  body {
+    background: #fff;
+  }
+  [data-print-hidden] {
+    display: none !important;
+  }
+  main {
+    max-width: 38rem;
+    margin-inline: auto;
+    padding: 0;
+  }
+  .article {
+    font-size: 11.5pt;
+    line-height: 1.62;
+  }
+  .article a {
+    color: var(--foreground);
+    text-decoration-color: var(--stone-400);
+  }
+  h1,
+  h2,
+  h3,
+  .article h2,
+  .article h3 {
+    break-after: avoid;
+  }
+  .article p,
+  .article li,
+  .article blockquote,
+  .article figure {
+    break-inside: avoid;
+  }
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  @page {
+    margin: 18mm 16mm;
+  }
+}
